@@ -1,0 +1,122 @@
+
+# *************************************************************************************************************************************************
+# --------------------------------------------------------------------------------------------------------------------------------------
+# Install HUMIO
+# --------------------------------------------------------------------------------------------------------------------------------------
+# *************************************************************************************************************************************************
+
+# --------------------------------------------------------------------------------------------------------------------------------------
+# Install HUMIO
+# --------------------------------------------------------------------------------------------------------------------------------------
+
+- name: LOGGING -                📥 WRITE TO LOGFILE
+  shell: |
+    export MESSAGE="Installing GITLAB"
+    export currentDate=$(date +%Y-%m-%d_%H:%M)
+    echo "---------------------------------------------------------------------------------------------------------------------------------------------------" >> ../installAIManager.log
+    echo $currentDate" - "$USER" - "$MESSAGE  >> ../installAIManager.log
+  ignore_errors: yes
+
+
+- name: GITLAB -              🚀 Create gitlab-system namespace
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Namespace
+    name: "gitlab-system"
+    state: present
+
+
+
+- name: GITLAB -              🚀 Gitlab ClusteRole
+  shell: |
+    oc create clusterrolebinding gitlab-nginx-ingress-admin --clusterrole=cluster-admin --serviceaccount=gitlab-system:gitlab-nginx-ingress
+  ignore_errors: yes
+
+- name: GITLAB -              🌏 Get Cluster FQDN
+  shell: |
+    CLUSTER_ROUTE=$(oc get routes console -n openshift-console | tail -n 1 2>&1 ) 
+    CLUSTER_FQDN=$( echo $CLUSTER_ROUTE | awk '{print $2}')
+    echo ${CLUSTER_FQDN##*console.}
+  register: CLUSTER_NAME
+
+  #args:
+  #  executable: /bin/bash
+
+- name: GITLAB -              💾 Set Cluster FQDN to {{CLUSTER_NAME.stdout_lines[0]}}
+  set_fact: CLUSTER_NAME={{ CLUSTER_NAME.stdout_lines[0] }} 
+
+
+
+
+- name: GITLAB -              🚀 Install Gitlab Subscription
+  kubernetes.core.k8s:
+    state: present
+    namespace: gitlab-system
+    src: ./templates/gitlab/gitlab-subscription.yaml
+  register: task_result
+
+
+
+- name: GITLAB -              🚀 Install Gitlab Operator Group
+  kubernetes.core.k8s:
+    state: present
+    namespace: gitlab-system
+    src: ./templates/gitlab/gitlab-operator-group.yaml
+  register: task_result
+
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------
+# Wait for Operator being ready
+# --------------------------------------------------------------------------------------------------------------------------------------
+- name: GITLAB -              🕦 Wait for Operator to become ready
+  shell: oc get pod -n gitlab-system |grep "2/2"|grep "gitlab-controller-manager"| grep -c ""
+  register: kubectl_get_pods
+  until: kubectl_get_pods.stdout|int > 0
+  retries: 500
+  delay: 15
+
+
+- name: GITLAB -              🚀 Install Gitlab Instance
+  kubernetes.core.k8s:
+    state: present
+    namespace: gitlab-system
+    template: ./templates/gitlab/gitlab-cr.j2
+  register: task_result
+
+
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------
+# Wait for gitlab-system being ready
+# --------------------------------------------------------------------------------------------------------------------------------------
+- name: GITLAB -              🕦 Wait for gitlab-system to become ready
+  shell: oc get pod -n gitlab-system |grep "2/2"| grep -c ""
+  register: kubectl_get_pods
+  until: kubectl_get_pods.stdout|int > 6
+  retries: 500
+  delay: 15
+  
+
+
+    
+- name: GITLAB -              🚀 Output Humio Connection Details
+  shell: |
+    echo "**********************************************************************************************************************************"
+    echo "HUMIO Connection Details"
+    echo "**********************************************************************************************************************************"
+    echo "    HUMIO:"
+    echo "        URL:      http://$(oc get route -n gitlab-system humio -o jsonpath={.spec.host})"
+    echo "        User:     developer"
+    echo "        Password: P4ssw0rd!"
+    echo ""
+    echo ""
+    echo ""
+    echo "        INTEGRATION URL:      http://$(oc get route -n gitlab-system humio -o jsonpath={.spec.host})/api/v1/repositories/aiops/query"
+    echo ""
+    echo ""
+  register: output_string
+  ignore_errors: yes
+- name: GITLAB -              🚀 Output Humio Connection Details
+  debug: 
+    var: output_string.stdout_lines

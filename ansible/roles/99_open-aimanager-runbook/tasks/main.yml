@@ -1,0 +1,30 @@
+
+
+# *************************************************************************************************************************************************
+# --------------------------------------------------------------------------------------------------------------------------------------
+# Open Doc
+# --------------------------------------------------------------------------------------------------------------------------------------
+# *************************************************************************************************************************************************
+
+
+- name: AI MANAGER -             🌏 Open AI MANAGER for RUNBOOK Publishing
+  shell: |
+    export WAIOPS_NAMESPACE=$(oc get po -A|grep aiops-orchestrator-controller |awk '{print$1}')
+    export AIMANAGER_ROUTE=$(oc get route -n $WAIOPS_NAMESPACE cpd -o jsonpath={.spec.host})
+
+    export URL=https://$AIMANAGER_ROUTE/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/automations/runbooks/library
+    if [ -x "$(command -v open)" ]; then
+      open $URL
+    else 
+      if [ -x "$(command -v firefox)" ]; then
+        firefox $URL
+      else 
+        if [ -x "$(command -v google-chrome)" ]; then
+          google-chrome $URL
+        fi
+      fi
+    fi
+  ignore_errors: yes
+  register: LOGINS
+
+

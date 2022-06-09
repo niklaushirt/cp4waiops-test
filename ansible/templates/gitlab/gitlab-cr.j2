@@ -1,0 +1,27 @@
+apiVersion: apps.gitlab.com/v1beta1
+kind: GitLab
+metadata:
+  name: gitlab
+  namespace: gitlab-system
+spec:
+  chart:
+    values:
+      certmanager:
+        install: false
+      # Disable NGINX Ingress Controller.
+      nginx-ingress:
+        enabled: false
+      global:
+        # Configure the domain from the previous step.
+        hosts:
+          domain: {{ CLUSTER_NAME }}
+        ingress:
+          # Unset `spec.ingressClassName` on the Ingress objects
+          # so the OpenShift Router takes ownership.
+          class: none
+          annotations:
+            # The OpenShift documentation says "edge" is the default, but
+            # the TLS configuration is only passed to the Route if this annotation
+            # is manually set.
+            route.openshift.io/termination: "edge"
+    version: 5.9.1
