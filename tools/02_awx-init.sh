@@ -33,7 +33,7 @@ export ADMIN_PASSWORD=$(oc -n awx get secret awx-admin-password -o jsonpath='{.d
 export OCP_URL=https://c108-e.eu-gb.containers.cloud.ibm.com:30553
 export OCP_TOKEN=CHANGE-ME
 
-export AWX_REPO=https://github.com/niklaushirt/aiops-install-awx-33.git
+export AWX_REPO=$INSTALL_REPO
 export RUNNER_IMAGE=niklaushirt/cp4waiops-awx:0.1.3
 
 
@@ -138,6 +138,43 @@ else
     sleep 15
 fi
 
+
+echo ""
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+echo "   🔎  Parameters"
+echo "        🧔 EXECUTION_ENV:$EXENV_ID"
+echo "        🔐 INVENTORY_ID:$INVENTORY_ID"
+echo "        🌏 PROJECT_ID:$PROJECT_ID"
+echo ""
+
+
+
+echo ""
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+echo "   🚀  Create Job: Install CP4WAIOPS AI Manager Demo"
+export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
+-H 'content-type: application/json' \
+-d $'{
+    "name": "00_Install CP4WAIOPS AI Manager Demo",
+    "description": "Install CP4WAIOPS AI Manager Demo - ALL STEPS - See here https://github.ibm.com/NIKH/aiops-install-ansible-33",
+    "job_type": "run",
+    "inventory": '$INVENTORY_ID',
+    "project": '$PROJECT_ID',
+    "playbook": "../ansible/00_aimanager-install-all.yaml",
+    "scm_branch": "",
+    "extra_vars": "",
+    "execution_environment": '$EXENV_ID',
+    "ask_variables_on_launch": true,
+    "extra_vars": "ENTITLED_REGISTRY_KEY: CHANGEME"
+}
+')
+echo $result
+if [[ $result =~ " already exists" ]];
+then
+    echo "        Already exists."
+else
+    echo "        Job created: "$(echo $result|jq ".created")
+fi 
 
 
 
