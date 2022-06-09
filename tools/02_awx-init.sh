@@ -79,8 +79,8 @@ echo "   🚀  Create AWX Project"
 export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/projects/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
 -H 'content-type: application/json' \
 -d $'{
-    "name": "CP4WAIOPS Project",
-    "description": "CP4WAIOPS Project",
+    "name": "CP4WAIOPS ANSIBLE INSTALLER",
+    "description": "CP4WAIOPS ANSIBLE INSTALLER",
     "local_path": "",
     "scm_type": "git",
     "scm_url": "'$AWX_REPO'",
@@ -100,7 +100,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/projects/" -u "$ADM
 
 if [[ $result =~ " already exists" ]];
 then
-    export PROJECT_ID=$(curl -X "GET" -s "https://$AWX_ROUTE/api/v2/projects/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure|jq -c '.results[]| select( .name == "CP4WAIOPS Project")|.id')
+    export PROJECT_ID=$(curl -X "GET" -s "https://$AWX_ROUTE/api/v2/projects/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure|jq -c '.results[]| select( .name == "CP4WAIOPS ANSIBLE INSTALLER")|.id')
     echo "        Already exists with ID:$PROJECT_ID"
 else
     echo "        Project created: "$(echo $result|jq ".created")
