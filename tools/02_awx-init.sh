@@ -319,7 +319,7 @@ echo "   🚀  Create Job: Install CP4WAIOPS Demo UI"
 export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
 -H 'content-type: application/json' \
 -d $'{
-    "name": "12_Install CP4WAIOPS Demo UI",
+    "name": "15_Install CP4WAIOPS Demo UI",
     "description": "Install CP4WAIOPS Demo UI",
     "job_type": "run",
     "inventory": '$INVENTORY_ID',

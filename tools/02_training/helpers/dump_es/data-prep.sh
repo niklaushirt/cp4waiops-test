@@ -20,12 +20,21 @@ mkdir CLEAN
 for actFile in $(ls -1 . | grep "json");
 do
     echo $actFile
-    cat $actFile| grep -v "mysql"| grep -v "load"| grep -v "mongodb"| grep -v "rabbitmq"| grep -v "redis"| grep -v "dispatch"| grep -v "payment" > ./CLEAN/$actFile
+    cat $actFile| grep -v "mysql"| grep -v "load"| grep -v "mongodb"| grep -v "rabbitmq"| grep -v "redis" > ./CLEAN/$actFile
     cat ./CLEAN/$actFile|jq '._source.instance_id' | sort | uniq -c
 done
 
 
 
+
+
+mkdir CLEAN
+for actFile in $(ls -1 . | grep "json");
+do
+    echo $actFile
+    cat $actFile| grep -v "mysql"| grep -v "load"| grep -v "mongodb"| grep -v "rabbitmq"| grep -v "redis"| grep -v "dispatch"| grep -v "payment" > ./CLEAN/$actFile
+    cat ./CLEAN/$actFile|jq '._source.instance_id' | sort | uniq -c
+done
 
 
 
