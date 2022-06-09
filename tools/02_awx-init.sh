@@ -152,7 +152,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/01_aimanager-base-install.yaml",
+    "playbook": "../ansible/01_aimanager-base-install.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID',
@@ -181,7 +181,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/02_aimanager-topology_runbooks.yaml.yaml",
+    "playbook": "../ansible/02_aimanager-topology_runbooks.yaml.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -207,7 +207,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/03_aimanager-training.yaml",
+    "playbook": "../ansible/03_aimanager-training.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -235,7 +235,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/09_aimanager-vanilla-install.yaml",
+    "playbook": "../ansible/09_aimanager-vanilla-install.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID',
@@ -262,7 +262,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/04_eventmanager-install.yaml",
+    "playbook": "../ansible/04_eventmanager-install.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID',
@@ -291,7 +291,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/05_inframanagement-install.yaml",
+    "playbook": "../ansible/05_inframanagement-install.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID',
@@ -319,7 +319,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/90_get-all-logins.yaml",
+    "playbook": "../ansible/90_get-all-logins.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -344,7 +344,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/14_install-rook-ceph.yaml",
+    "playbook": "../ansible/14_install-rook-ceph.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -370,7 +370,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/16_aimanager-install-demo-ui.yaml",
+    "playbook": "../ansible/16_aimanager-install-demo-ui.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -397,7 +397,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/17_aimanager-install-toolbox.yaml",
+    "playbook": "../ansible/17_aimanager-install-toolbox.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -423,7 +423,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/20_addons-install-turbonomic.yaml",
+    "playbook": "../ansible/20_addons-install-turbonomic.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -449,7 +449,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/21_addons-install-humio.yaml",
+    "playbook": "../ansible/21_addons-install-humio.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -475,7 +475,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/22_addons-install-elk-ocp.yaml",
+    "playbook": "../ansible/22_addons-install-elk-ocp.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -500,7 +500,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/23_addons-install-awx.yaml",
+    "playbook": "../ansible/23_addons-install-awx.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -525,7 +525,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/24_install-manageiq.yaml",
+    "playbook": "../ansible/24_install-manageiq.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -551,7 +551,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/29_addons-install-servicemesh.yaml",
+    "playbook": "../ansible/29_addons-install-servicemesh.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -578,7 +578,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/80_load-topology.yaml",
+    "playbook": "../ansible/80_load-topology.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -605,7 +605,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/80_load-topology-event.yaml",
+    "playbook": "../ansible/80_load-topology-event.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -633,7 +633,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/84_training-all.yaml",
+    "playbook": "../ansible/84_training-all.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -661,7 +661,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/11_install-ldap-server.yaml",
+#     "playbook": "../ansible/11_install-ldap-server.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -689,7 +689,7 @@ export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u 
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
     "project": '$PROJECT_ID',
-    "playbook": "ansible/91_aimanager-debug-patches.yaml",
+    "playbook": "../ansible/91_aimanager-debug-patches.yaml",
     "scm_branch": "",
     "extra_vars": "",
     "execution_environment": '$EXENV_ID'
@@ -715,7 +715,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/13_install-robot-shop.yaml",
+#     "playbook": "../ansible/13_install-robot-shop.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -740,7 +740,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/85_aimanager-training-create-definitions.yaml",
+#     "playbook": "../ansible/85_aimanager-training-create-definitions.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -767,7 +767,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/86_aimanager-training-load-log-data.yaml",
+#     "playbook": "../ansible/86_aimanager-training-load-log-data.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -793,7 +793,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/87_aimanager-training-run-logs.yaml",
+#     "playbook": "../ansible/87_aimanager-training-run-logs.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -820,7 +820,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/86_aimanager-training-load-snow-data.yaml",
+#     "playbook": "../ansible/86_aimanager-training-load-snow-data.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
@@ -846,7 +846,7 @@ fi
 #     "job_type": "run",
 #     "inventory": '$INVENTORY_ID',
 #     "project": '$PROJECT_ID',
-#     "playbook": "ansible/87_aimanager-training-run-snow.yaml",
+#     "playbook": "../ansible/87_aimanager-training-run-snow.yaml",
 #     "scm_branch": "",
 #     "extra_vars": "",
 #     "execution_environment": '$EXENV_ID'
