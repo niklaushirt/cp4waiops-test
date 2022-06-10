@@ -278,7 +278,7 @@ echo "   🚀  Create Job: Get CP4WAIOPS Logins"
 export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
 -H 'content-type: application/json' \
 -d $'{
-    "name": "70_Get CP4WAIOPS Logins",
+    "name": "10_Get CP4WAIOPS Logins",
     "description": "10_Get CP4WAIOPS Logins",
     "job_type": "run",
     "inventory": '$INVENTORY_ID',
@@ -310,7 +310,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "80_Install Rook Ceph",
+                "name": "70_Install Rook Ceph",
                 "description": "Install Rook Ceph",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -336,7 +336,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "81_Install CP4WAIOPS Demo UI",
+                "name": "71_Install CP4WAIOPS Demo UI",
                 "description": "Install CP4WAIOPS Demo UI",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -363,7 +363,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "82_Install CP4WAIOPS Toolbox",
+                "name": "72_Install CP4WAIOPS Toolbox",
                 "description": "Install CP4WAIOPS Toolbox",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -388,7 +388,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "915_Install LDAP",
+                "name": "73_Install LDAP",
                 "description": "Install LDAP and register users. This is usually already done by the AI Manager Installation.",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -415,7 +415,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "916_Install RobotShop",
+                "name": "74_Install RobotShop",
                 "description": "Install RobotShop. This is usually already done by the AI Manager Installation.",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -606,7 +606,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "90_Load Topology and Runbooks for AI Manager",
+                "name": "80_Load Topology and Runbooks for AI Manager",
                 "description": "Load Topology and Runbooks for AI Manager",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -661,7 +661,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "91_Train All Models",
+                "name": "81_Train All Models",
                 "description": "Train All Models, takes about 5-7 Minutes",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
@@ -697,7 +697,7 @@ then
             export result=$(curl -X "POST" -s "https://$AWX_ROUTE/api/v2/job_templates/" -u "$ADMIN_USER:$ADMIN_PASSWORD" --insecure \
             -H 'content-type: application/json' \
             -d $'{
-                "name": "91_Debug Patch",
+                "name": "90_Debug Patch",
                 "description": "Debug Patch",
                 "job_type": "run",
                 "inventory": '$INVENTORY_ID',
